@@ -26,6 +26,15 @@ def clearButton():
     operator = ""
     textin.set('')
 
+def keyPress(event):
+    key = event.char
+    if key in '0123456789+-*/.':
+        clickButton(key)
+    elif key == '\r':  # Enter key
+        equalButton()
+    elif key == '\x08':  # Backspace key
+        clearButton()
+
 metext = Entry(me, font=("Courier New", 12, 'bold'), textvar=textin, width=25, bd=5, bg='powder blue')
 metext.pack()
 
@@ -80,4 +89,5 @@ buttonClear.place(x=270, y=100)
 buttonEqual = Button(me, padx=151, pady=14, bd=4, bg='white', command=equalButton, text="=", font=("Courier New", 16, 'bold'))
 buttonEqual.place(x=10, y=380)
 
+me.bind('<Key>', keyPress)
 me.mainloop()
