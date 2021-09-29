@@ -35,59 +35,24 @@ def keyPress(event):
     elif key == '\x08':  # Backspace key
         clearButton()
 
+Keys = {
+    'buttonText': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '+', '-', '*', '/', 'CE', '='],
+    'buttonNames': ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9', 'button0', 'buttonDot', 'buttonPlus', 'buttonSubstract', 'buttonMultiply', 'buttonDivide', 'buttonClear', 'buttonEqual'],
+    'buttonX': [10, 10, 10, 75, 75, 75, 140, 140, 140, 10, 75, 205, 205, 205, 205, 270, 10],
+    'buttonY': [100, 170, 240, 100, 170, 240, 100, 170, 240, 310, 310, 100, 170, 240, 310, 100, 380],
+    'buttonPaddingx': [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 47, 14, 14, 14, 14, 14, 151],
+    'buttonPaddingy': [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 47, 14, 14, 14, 14, 119, 14],
+    'buttonBg': 'white',
+    'buttonFont': ("Courier New", 16, 'bold'),
+    'buttonCommand': [lambda: clickButton(1), lambda: clickButton(2), lambda: clickButton(3), lambda: clickButton(4), lambda: clickButton(5), lambda: clickButton(6), lambda: clickButton(7), lambda: clickButton(8), lambda: clickButton(9), lambda: clickButton(0), lambda: clickButton("."), lambda: clickButton("+"), lambda: clickButton("-"), lambda: clickButton("*"), lambda: clickButton("/"), clearButton, equalButton],
+    'buttonbd': 4
+    }
+
 metext = Entry(me, font=("Courier New", 12, 'bold'), textvar=textin, width=25, bd=5, bg='powder blue')
 metext.pack()
-
-button1 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(1), text="1", font=("Courier New", 16, 'bold'))
-button1.place(x=10, y=100)
-
-button2 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(2), text="2", font=("Courier New", 16, 'bold'))
-button2.place(x=10, y=170)
-
-button3 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(3), text="3", font=("Courier New", 16, 'bold'))
-button3.place(x=10, y=240)
-
-button4 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(4), text="4", font=("Courier New", 16, 'bold'))
-button4.place(x=75, y=100)
-
-button5 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(5), text="5", font=("Courier New", 16, 'bold'))
-button5.place(x=75, y=170)
-
-button6 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(6), text="6", font=("Courier New", 16, 'bold'))
-button6.place(x=75, y=240)
-
-button7 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(7), text="7", font=("Courier New", 16, 'bold'))
-button7.place(x=140, y=100)
-
-button8 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(8), text="8", font=("Courier New", 16, 'bold'))
-button8.place(x=140, y=170)
-
-button9 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(9), text="9", font=("Courier New", 16, 'bold'))
-button9.place(x=140, y=240)
-
-button0 = Button(me, padx=14, pady=14, bd=4, bg='white', command=lambda: clickButton(0), text="0", font=("Courier New", 16, 'bold'))
-button0.place(x=10, y=310)
-
-buttonDot = Button(me, padx=47, pady=14, bd=4, bg='white', command=lambda: clickButton("."), text=".", font=("Courier New", 16, 'bold'))
-buttonDot.place(x=75, y=310)
-
-buttonPlus = Button(me, padx=14, pady=14, bd=4, bg='white', text="+", command=lambda: clickButton("+"), font=("Courier New", 16, 'bold'))
-buttonPlus.place(x=205, y=100)
-
-buttonSubstract = Button(me, padx=14, pady=14, bd=4, bg='white', text="-", command=lambda: clickButton("-"), font=("Courier New", 16, 'bold'))
-buttonSubstract.place(x=205, y=170)
-
-buttonMultiply = Button(me, padx=14, pady=14, bd=4, bg='white', text="*", command=lambda: clickButton("*"), font=("Courier New", 16, 'bold'))
-buttonMultiply.place(x=205, y=240)
-
-buttonDivide = Button(me, padx=14, pady=14, bd=4, bg='white', text="/", command=lambda: clickButton("/"), font=("Courier New", 16, 'bold'))
-buttonDivide.place(x=205, y=310)
-
-buttonClear = Button(me, padx=14, pady=119, bd=4, bg='white', text="CE", command=clearButton, font=("Courier New", 16, 'bold'))
-buttonClear.place(x=270, y=100)
-
-buttonEqual = Button(me, padx=151, pady=14, bd=4, bg='white', command=equalButton, text="=", font=("Courier New", 16, 'bold'))
-buttonEqual.place(x=10, y=380)
+for i in range(len(Keys['buttonText'])):
+    button = Button(me, padx=Keys['buttonPaddingx'][i], pady=Keys['buttonPaddingy'][i], bd=Keys['buttonbd'], bg=Keys['buttonBg'], command=Keys['buttonCommand'][i], text=Keys['buttonText'][i], font=Keys['buttonFont'])
+    button.place(x=Keys['buttonX'][i], y=Keys['buttonY'][i])
 
 me.bind('<Key>', keyPress)
 me.mainloop()
