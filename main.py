@@ -14,6 +14,17 @@ def clickButton(number):
     operator = operator + str(number)
     textin.set(operator)
 
+def equalButton():
+    global operator
+    result = str(eval(operator))
+    textin.set(result)
+    operator = result
+
+def clearButton():
+    global operator
+    operator = ""
+    textin.set('')
+
 metext = Entry(me, textvar=textin)
 metext.pack()
 
@@ -61,5 +72,11 @@ buttonMultiply.place(x=205, y=240)
 
 buttonDivide = Button(me, text="/", command=lambda: clickButton("/"))
 buttonDivide.place(x=205, y=310)
+
+buttonClear = Button(me, text="CE", command=clearButton)
+buttonClear.place(x=270, y=100)
+
+buttonEqual = Button(me, command=equalButton, text="=")
+buttonEqual.place(x=10, y=380)
 
 me.mainloop()
