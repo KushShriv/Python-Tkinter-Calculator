@@ -3,5 +3,7 @@
 Clone the repo and run `pip install tkinter`
 Then run `python main.py`
 
-## Calculator Image
+## How it looks
+<div align = "center">
 ![Calculator image alt text](image.png)
+</div>
